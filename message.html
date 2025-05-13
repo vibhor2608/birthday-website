@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .message-container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .message-container h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+
+        .message-container p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .message-container p span {
+            font-weight: bold;
+            color: #ff6f61;
+        }
+
+        .message-container .signature {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            color: #6a0572;
+        }
+
+        .message-container .decorative-line {
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, #ff6f61, #a6c1ee);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .invitation-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .invitation-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(255, 117, 140, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <h2>A Special Message</h2>
+        <div class="decorative-line"></div>
+        <p>
+            Dear <span>Naisha</span>,<br><br>
+            Happy, happy birthday to you! Today's extra sparkly because it's all about celebrating the super fun and amazing you! <br><br>
+            As you turn another awesome year older, get ready for even more fun and exciting things coming your way! 
+            May this new chapter be filled with tons of happy moments, maybe some silly surprises, and many other things that make you happy. 
+            I hope we do many exciting things together 🥰!<br><br>
+            So, here's to you – to your big heart, your playful spirit, and all the amazing adventures ahead. 
+            Keep shining bright and never lose that sparkle! <span>Happy 20th Birthday!</span> ✨🎉
+        </p>
+    
+        <!-- Invitation Button -->
+        <a href="invitation.html" class="invitation-button">View Your Invitation</a>
+    </div>
+</body>
+</html>

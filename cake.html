@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Celebrate with Cake!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffcad4, #ffd1e3, #e0c3fc, #bde0fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .heading {
+            font-size: 3.5rem;
+            color: #ff71b6;
+            text-shadow: 
+                0 0 10px rgba(255, 113, 182, 0.5),
+                0 0 20px rgba(255, 113, 182, 0.3),
+                0 0 30px rgba(255, 113, 182, 0.2);
+            margin-bottom: 8rem;
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff71b6, 0 0 20px #ff71b6, 0 0 30px #ff9ecd;
+            }
+            to {
+                text-shadow: 0 0 20px #ff71b6, 0 0 30px #ff71b6, 0 0 40px #ff9ecd;
+            }
+        }
+
+        .cake-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cake {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .cake:hover {
+            transform: perspective(1000px) rotateX(5deg) scale(1.05);
+        }
+
+        .layer {
+            position: absolute;
+            width: 100%;
+            background: linear-gradient(to right, #ff9ecd, #ff71b6);
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+        }
+
+        .layer-1 {
+            height: 80px;
+            bottom: 0;
+            width: 250px;
+        }
+
+        .layer-2 {
+            height: 70px;
+            bottom: 80px;
+            width: 220px;
+            left: 15px;
+            background: linear-gradient(to right, #ffb7e0, #ff8ac7);
+        }
+
+        .layer-3 {
+            height: 60px;
+            bottom: 150px;
+            width: 190px;
+            left: 30px;
+            background: linear-gradient(to right, #ffc4e6, #ffa3d4);
+        }
+
+        .candle {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to right, #fff, #ffd1e3);
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        .flame {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ff9d00, #ff5e00);
+            border-radius: 50% 50% 20% 20%;
+            top: -25px;
+            animation: flicker 1s infinite;
+            filter: drop-shadow(0 0 10px #ff9d00);
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.9); opacity: 0.8; }
+        }
+
+        .cut-cake-button, .next-page-button {
+            position: fixed;
+            bottom: 40px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff9ecd, #ff71b6);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 0 15px rgba(255, 113, 182, 0.5),
+                0 0 30px rgba(255, 113, 182, 0.3);
+            font-family: 'Arial', sans-serif;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cut-cake-button.show, .next-page-button.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff71b6;
+            border-radius: 50%;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">Let's Cut the Cake! 🎂</h1>
+    <div class="cake-container">
+        <div class="cake">
+            <div class="layer layer-1"></div>
+            <div class="layer layer-2"></div>
+            <div class="layer layer-3"></div>
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+    </div>
+    <button class="cut-cake-button show" id="cutCakeBtn">Cut Cake</button>
+    <button class="next-page-button" id="nextPageBtn">Next Page</button>
+
+    <!-- Add the audio element -->
+    <audio id="celebration-song" src="assets/audio/happy-birthday.mp3" autoplay loop></audio>
+
+    <script>
+        const cake = document.querySelector('.cake-container');
+        const candle = document.querySelector('.candle');
+        const flame = document.querySelector('.flame');
+        const audio = document.getElementById('celebration-song');
+        const cutCakeButton = document.getElementById('cutCakeBtn');
+        const nextPageButton = document.getElementById('nextPageBtn');
+        let isClicked = false;
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * window.innerWidth}px`;
+            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            document.body.appendChild(confetti);
+
+            confetti.addEventListener('animationend', () => {
+                confetti.remove();
+            });
+        }
+
+        function startCelebration() {
+            if (isClicked) return;
+            isClicked = true;
+
+            // Fade out the candle
+            gsap.to(candle, {
+                opacity: 0,
+                y: -20,
+                duration: 1,
+                ease: "power2.out",
+                onComplete: () => candle.remove()
+            });
+
+            // Start confetti
+            const confettiInterval = setInterval(() => {
+                for (let i = 0; i < 10; i++) {
+                    createConfetti();
+                }
+            }, 200);
+
+            // Stop confetti after 5 seconds
+            setTimeout(() => {
+                clearInterval(confettiInterval);
+            }, 5000);
+
+            // Show the next page button
+            setTimeout(() => {
+                nextPageButton.classList.add('show');
+            }, 2000);
+
+            // Hide the cut cake button
+            cutCakeButton.classList.remove('show');
+        }
+
+        // Save audio state to localStorage and navigate to final.html
+        nextPageButton.addEventListener('click', () => {
+            localStorage.setItem('audioPlaying', 'true'); // Save audio state
+            window.location.href = 'final.html';
+        });
+
+        // Automatically play the audio when the page loads
+        window.addEventListener('load', () => {
+            const audioPlaying = localStorage.getItem('audioPlaying');
+            if (audioPlaying === 'true') {
+                audio.play();
+            }
+        });
+
+        // Trigger the celebration when the "Cut Cake" button is clicked
+        cutCakeButton.addEventListener('click', startCelebration);
+    </script>
+</body>
+</html>

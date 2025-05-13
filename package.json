@@ -1,0 +1,16 @@
+{
+  "name": "birthday-website",
+  "version": "1.0.0",
+  "description": "A beautiful website to celebrate the 20th birthday of a special friend.",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server pages",
+    "build": "echo 'Build process can be defined here'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
